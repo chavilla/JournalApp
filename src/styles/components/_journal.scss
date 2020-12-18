@@ -1,0 +1,144 @@
+
+.journal__main-content{
+    position: relative;
+}
+
+.journal__sidebar {
+    background-color: $google-blue;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding-left: 10px;
+    padding-right: 15px;
+    position: absolute;
+    transition: transform .3s ease;
+}
+
+.journal__sidebar-show {
+    transform: translateX(0);
+}
+
+.journal__sidebar-hide {
+    transform: translateX(-100%);
+}
+
+
+/* Using SCSS variables to store breakpoints */
+$breakpoint-tablet: 768px;
+@media (min-width: $breakpoint-tablet) {
+
+    .journal__main-content {
+        display: flex;
+        position: static;
+    }
+
+    .journal__sidebar {
+        flex-basis: 25%;
+        transform: translateX(0);
+        position: static;
+    }
+
+    .journal__main-content main {
+        flex-basis: 75%;
+    }
+}
+
+.journal__sidebar-navbar{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+
+    button {
+        display: none;
+    }
+
+}
+
+@media (min-width: $breakpoint-tablet) {
+    
+    .journal__sidebar-navbar button{
+        display: block;
+    }
+
+    .journal__sidebar-navbar div {
+        display: none;
+    }
+}
+
+.journal__new-entry {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 30px;
+    width: 100%;
+    transition: color .3s ease;
+    
+    &:hover {
+        color: darken($color: white, $amount: 20);
+    }
+    
+}
+
+.journal__entries {
+    margin-top: 30px;
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+        -webkit-appearance: none;
+        background-color: #ccc;
+    }
+
+    &::-webkit-scrollbar:vertical {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar:horizontal {
+        height: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #797979;
+        border-radius: 20px;
+    }
+}
+
+.journal__entry {
+    background-color: white;
+    border-radius: 4px;
+    color: black;
+    display: flex;
+    margin-bottom: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.journal__entry-picture {
+    height: 70px;
+    width: 70px;
+}
+
+.journal__entry-body {
+    padding: 10px;
+
+}
+
+.journal__entry-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.journal__entry-content {
+    font-size: 12px;
+}
+
+.journal__entry-date-box {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+}
