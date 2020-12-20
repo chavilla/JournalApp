@@ -1,63 +1,55 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux'
 import { Link } from "react-router-dom";
 import { startLoginEmailPassword, startLoginGoogle } from "../../actions/auth";
 import useForm from "../../hooks/useForm";
 
-const LoginScreen = () => {
+const LoginScreen = ( ) => {
+
   const dispatch = useDispatch();
 
-  const [value, handleChange, reset] = useForm({
-    email: "",
-    password: "",
+  const [value, handleChange, reset]=useForm({
+    email: '',
+    password:'',
   });
 
-  const { email, password } = value;
+  const  { email, password }=value;
 
-  const handleLogin = (e) => {
+  const handleLogin=(e)=>{
     e.preventDefault();
     dispatch(startLoginEmailPassword(email, password));
     reset();
-  };
+  }
 
-  const handleGoogleLogin = () => {
+  const handleGoogleLogin=()=>{
     dispatch(startLoginGoogle());
-  };
+  }
 
   return (
     <>
-      <h3 className="auth__title">Iniciar Sesión</h3>
-      <form onSubmit={handleLogin}>
-        <div className="auth__container-input">
-          <input
-            className="auth__input"
-            type="email"
-            name="email"
-            autoComplete="off"
-            placeholder="Email"
-            value={email}
-            onChange={handleChange}
-          />
+      <h3 className='auth__title'>Iniciar Sesión</h3>
+      <form
+      onSubmit={ handleLogin }
+      >
+        <div className='auth__container-input'>
+        <input className='auth__input' 
+        type="email" name="email" autoComplete='off' placeholder='Email' value={email} 
+        onChange={handleChange}
+        />
         </div>
 
-        <div className="auth__container-input">
-          <input
-            className="auth__input"
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={password}
-            onChange={handleChange}
-          />
+        <div className='auth__container-input'>
+        <input className='auth__input' type="password" name="password" placeholder='Password' value={password} 
+        onChange={handleChange}
+        />
+       
         </div>
 
-        <button className="btn btn-primary btn-block mt-1" type="submit">
-          Login
-        </button>
-
-        <div className="auth__social-network">
+        <button className='btn btn-primary btn-block mt-1' type="submit">Login</button>
+        
+        <div className='auth__social-network'>
           <p>Login with Social Networks</p>
-          <div className="google-btn" onClick={handleGoogleLogin}>
+          <div className="google-btn" onClick={ handleGoogleLogin }>
             <div className="google-icon-wrapper">
               <img
                 className="google-icon"
@@ -70,8 +62,8 @@ const LoginScreen = () => {
             </p>
           </div>
         </div>
-        <Link to="/auth/register" className="link">
-          Create an account
+        <Link to='/auth/register' className='link'>
+            Create an account
         </Link>
       </form>
     </>

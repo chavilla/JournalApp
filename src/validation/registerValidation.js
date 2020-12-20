@@ -1,44 +1,22 @@
 import validator from "validator";
 
-let error = {};
-export const registerValidation = (values) => {
+export const registerValidation = (values={}) => {
+
+  const error = {};
   const { email, displayName, password, confirmPassword } = values;
-  let isValid = true;
 
-  if (email.trim().length === 0 || !validator.isEmail(email)) {
-    error = {
-      ...error,
-      email: "Email is not valid",
-    };
-    isValid = false;
+  if (!validator.isEmail(email)) {
+    error.email = "Email is not valid";
   }
-
   if (displayName.trim().length === 0) {
-    error = {
-      ...error,
-      displayName: "Name is required",
-    };
-    isValid = false;
+    error.displayName = "Name is required";
   }
-
   if (password.length < 8) {
-    error = {
-      ...error,
-      password: "Password should be at least 8 characters",
-    };
-    isValid = false;
+    error.password = "Password should be at least 8 characters";
   }
-
   if (password !== confirmPassword) {
-    error = {
-      ...error,
-      confirmPassword: "Passwords should match each other",
-    };
-    isValid = false;
+    error.confirmPassword = "Passwords should match each other";
   }
 
-  return {
-    isValid,
-    error,
-  };
+  return error;
 };

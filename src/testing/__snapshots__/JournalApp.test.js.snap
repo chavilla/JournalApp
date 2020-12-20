@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JournalApp component should to display the component 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <ContextProvider
+    value={
+      Object {
+        "setShow": [Function],
+        "show": false,
+      }
+    }
+  >
+    <AppRouter />
+  </ContextProvider>
+</Provider>
+`;

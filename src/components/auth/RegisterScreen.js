@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useForm from "../../hooks/useForm";
-//import { registerValidation } from "../../validation/registerValidation";
+import { registerValidation } from "../../validation/registerValidation";
 
 const RegisterScreen = () => {
   const [values, handlechange] = useForm({
@@ -16,7 +16,7 @@ const RegisterScreen = () => {
   const handleRegister = (e) => {
     e.preventDefault();
 
-    //const isValid = registerValidation(values);
+    const isValid = registerValidation(values);
   };
 
   return (
