@@ -17,3 +17,12 @@ export const uiStartLoading = () => ({
 export const uiFinishLoading = () => ({
     type: types.uiFinishLoading
 });
+
+export const showSidebar = () => ({
+    type: types.showSidebar
+});
+
+
+export const hideSidebar = () => ({
+    type: types.hideSidebar
+});

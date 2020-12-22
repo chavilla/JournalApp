@@ -1,13 +1,25 @@
-import React, { useContext } from 'react'
-import { ShowContext } from '../context/showContext'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { hideSidebar, showSidebar } from '../../actions/ui';
 
 const NotesAppBar = () => {
 
-    const { show, setShow }=useContext(ShowContext);
+  const {x} = useSelector(state => state.ui);   
+
+  const dispatch=useDispatch();
+
+    const handleToggle = () => {
+      if (x===-100) {
+        dispatch(showSidebar())
+      }
+      else{
+        dispatch(hideSidebar())
+      }
+  }
 
     return (
         <div className='notes__appbar'>
-          <div className='notes__appbar-menuIcon' onClick={ ()=>setShow(!show) }>
+          <div className='notes__appbar-menuIcon' onClick={ ()=>handleToggle() }>
             <i className="fas fa-bars"></i>
           </div>
           <span>28 de Diciembre de 2020</span>

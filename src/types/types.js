@@ -8,4 +8,7 @@ export const types = {
   uiStartLoading: '[UI] Start loading',
   uiFinishLoading: '[UI] Finish loading',
 
+  showSidebar : '[UI] Show sidebar',
+  hideSidebar : '[UI] Hide sidebar ',
+
 };

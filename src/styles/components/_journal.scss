@@ -12,7 +12,7 @@
     padding-left: 10px;
     padding-right: 15px;
     position: absolute;
-    transition: transform .3s ease;
+    
 }
 
 .journal__sidebar-show {
@@ -35,7 +35,7 @@ $breakpoint-tablet: 768px;
 
     .journal__sidebar {
         flex-basis: 25%;
-        transform: translateX(0);
+        transform: translateX(0) !important;
         position: static;
     }
 

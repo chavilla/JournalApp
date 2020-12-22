@@ -2,7 +2,8 @@ import { types } from "../types/types"
 
 const initialState = {
     loading: false,
-    msgError: null
+    msgError: null,
+    x: -100,
 }
 
 export const uiReducer = (state=initialState, action) => {
@@ -30,6 +31,19 @@ export const uiReducer = (state=initialState, action) => {
                 ...state,
                 loading: false
             }
+
+        case types.showSidebar:
+            return {
+                ...state,
+                x: 0
+            }
+
+        case types.hideSidebar:
+            return {
+                ...state,
+                x: -100
+            }
+
         default:
             return state;
     }
