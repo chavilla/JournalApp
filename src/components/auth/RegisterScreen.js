@@ -1,9 +1,16 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import { registerValidation } from "../../validation/registerValidation";
+import { setError, removeError } from "../../actions/ui";
+import { startRegisterEmailPassword } from "../../actions/auth";
 
 const RegisterScreen = () => {
+  const dispatch = useDispatch();
+
+  const { msgError } = useSelector((state) => state.ui);
+
   const [values, handlechange] = useForm({
     email: "",
     displayName: "",
@@ -16,14 +23,20 @@ const RegisterScreen = () => {
   const handleRegister = (e) => {
     e.preventDefault();
 
-    const isValid = registerValidation(values);
+    const { isValid, error } = registerValidation(values);
+
+    if (!isValid) {
+      dispatch(setError(error));
+    } else {
+      dispatch(removeError());
+      dispatch(startRegisterEmailPassword(email, password, displayName));
+    }
   };
 
   return (
     <>
       <h3 className="auth__title">Register</h3>
       <form onSubmit={handleRegister}>
-        <div className="auth__alert-error">Error</div>
         <div className="auth__container-input">
           <input
             className="auth__input"
@@ -35,6 +48,9 @@ const RegisterScreen = () => {
             value={email}
             onChange={handlechange}
           />
+          {msgError && (
+            <div className="auth__alert-error">{msgError.email}</div>
+          )}
         </div>
 
         <div className="auth__container-input">
@@ -48,6 +64,9 @@ const RegisterScreen = () => {
             value={displayName}
             onChange={handlechange}
           />
+          {msgError && (
+            <div className="auth__alert-error">{msgError.displayName}</div>
+          )}
         </div>
 
         <div className="auth__container-input">
@@ -60,6 +79,9 @@ const RegisterScreen = () => {
             value={password}
             onChange={handlechange}
           />
+          {msgError && (
+            <div className="auth__alert-error">{msgError.password}</div>
+          )}
         </div>
 
         <div className="auth__container-input">
@@ -72,9 +94,13 @@ const RegisterScreen = () => {
             value={confirmPassword}
             onChange={handlechange}
           />
+          {msgError && (
+            <div className="auth__alert-error">{msgError.confirmPassword}</div>
+          )}
         </div>
 
-        <button className="btn btn-primary btn-block mt-1" type="submit">
+        <button 
+        className="btn btn-primary btn-block mt-1" type="submit">
           Sig In
         </button>
 

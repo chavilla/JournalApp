@@ -1,55 +1,99 @@
-import React from "react";
-import { useDispatch } from 'react-redux'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { startLoginEmailPassword, startLoginGoogle } from "../../actions/auth";
+import { removeError, setError } from "../../actions/ui";
 import useForm from "../../hooks/useForm";
+import { loginValidation } from "../../validation/loginValidation";
 
-const LoginScreen = ( ) => {
-
+const LoginScreen = ({ history }) => {
   const dispatch = useDispatch();
 
-  const [value, handleChange, reset]=useForm({
-    email: '',
-    password:'',
+  //get the state
+  const {
+    ui: { msgError, loading },
+    auth: { uid },
+  } = useSelector((state) => state);
+
+  useEffect(() => {
+    if (uid) {
+      history.push("/journal");
+    }
+  }, [uid]);
+
+  //custom hook
+  const [value, handleChange] = useForm({
+    email: "",
+    password: "",
   });
 
-  const  { email, password }=value;
+  const { email, password } = value;
 
-  const handleLogin=(e)=>{
+  const handleLogin = (e) => {
     e.preventDefault();
-    dispatch(startLoginEmailPassword(email, password));
-    reset();
-  }
 
-  const handleGoogleLogin=()=>{
+    const { isValid, error } = loginValidation(value);
+
+    if (isValid) {
+      dispatch(removeError());
+      dispatch(startLoginEmailPassword(email, password));
+    } else {
+      dispatch(setError(error));
+    }
+  };
+
+  const handleGoogleLogin = () => {
     dispatch(startLoginGoogle());
-  }
+  };
 
   return (
     <>
-      <h3 className='auth__title'>Iniciar Sesión</h3>
-      <form
-      onSubmit={ handleLogin }
-      >
-        <div className='auth__container-input'>
-        <input className='auth__input' 
-        type="email" name="email" autoComplete='off' placeholder='Email' value={email} 
-        onChange={handleChange}
-        />
+      <h3 className="auth__title">Iniciar Sesión</h3>
+      <form onSubmit={handleLogin}>
+        <div className="auth__container-input">
+          <input
+            className="auth__input"
+            type="email"
+            name="email"
+            autoComplete="off"
+            placeholder="Email"
+            value={email}
+            onChange={handleChange}
+          />
+          {msgError && (
+            <div className="auth__alert-error">{msgError.email}</div>
+          )}
         </div>
 
-        <div className='auth__container-input'>
-        <input className='auth__input' type="password" name="password" placeholder='Password' value={password} 
-        onChange={handleChange}
-        />
-       
+        <div className="auth__container-input">
+          <input
+            className="auth__input"
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={password}
+            onChange={handleChange}
+          />
+          {msgError && (
+            <div className="auth__alert-error">{msgError.password}</div>
+          )}
         </div>
 
-        <button className='btn btn-primary btn-block mt-1' type="submit">Login</button>
-        
-        <div className='auth__social-network'>
+        <button
+          disabled={loading ? true : false}
+          className="btn btn-primary btn-block mt-1"
+          type="submit"
+        >
+          Login
+        </button>
+
+        {msgError && msgError.message ? (
+          <div className="auth__messageNotExist">{msgError.message}</div>
+        ) : null}
+
+        <div className="auth__social-network">
           <p>Login with Social Networks</p>
-          <div className="google-btn" onClick={ handleGoogleLogin }>
+          <div className="google-btn" onClick={handleGoogleLogin}>
             <div className="google-icon-wrapper">
               <img
                 className="google-icon"
@@ -62,8 +106,8 @@ const LoginScreen = ( ) => {
             </p>
           </div>
         </div>
-        <Link to='/auth/register' className='link'>
-            Create an account
+        <Link to="/auth/register" className="link">
+          Create an account
         </Link>
       </form>
     </>
