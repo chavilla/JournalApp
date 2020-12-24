@@ -22,7 +22,7 @@ const NotesAppBar = () => {
           <div className='notes__appbar-menuIcon' onClick={ ()=>handleToggle() }>
             <i className="fas fa-bars"></i>
           </div>
-          <span>28 de Diciembre de 2020</span>
+          <span>{ `${ new Date().getDate() }/${new Date().getMonth()+ 1}/${new Date().getFullYear()}` }</span>
           <div>
               <button className='btn'>Picture</button>
               <button className='btn'>Save</button>

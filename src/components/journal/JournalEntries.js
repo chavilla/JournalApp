@@ -1,17 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { startLoadingNotes } from '../../actions/notes';
 import JournalEntry from './JournalEntry';
 
 const JournalEntries = () => {
 
-    const entries=[1,2,3,4,5,6,7,8];
+
+    const dispatch = useDispatch();
+
+    const { note:{notes}, auth: { uid } } = useSelector(state => state);
+
+    useEffect(()=>{
+        dispatch(startLoadingNotes(uid));
+    },[notes, dispatch, uid]);
+
 
     return (
-        <div className='journal__entries'>
+        <div className='journal__entries'
+        style = {{
+            overflow: notes.length > 7 ? 'scroll' : 'hidden'
+        }}
+        >
             {
-                entries.map(e=> (
+                notes.length === 0 &&
+                <p className=''>You do not have any note</p>
+            }
+            {
+                notes.map( note => (
                     <JournalEntry 
-                    key={ e }
-                    entry={ e }
+                    key={ note.id }
+                    note={ note }
                     />
                 ) )
             }

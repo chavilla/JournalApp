@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
+    width: 95%;
     padding-left: 10px;
     padding-right: 15px;
     position: absolute;
@@ -85,7 +86,6 @@ $breakpoint-tablet: 768px;
 
 .journal__entries {
     margin-top: 30px;
-    overflow: scroll;
 
     &::-webkit-scrollbar {
         -webkit-appearance: none;
@@ -110,14 +110,15 @@ $breakpoint-tablet: 768px;
     background-color: white;
     border-radius: 4px;
     color: black;
-    display: flex;
+    display: grid;
+    grid-template-columns: 25% 75%;
     margin-bottom: 10px;
-    overflow: hidden;
+    overflow: hidden !important;
     cursor: pointer;
 }
 
 .journal__entry-picture {
-    height: 70px;
+    height: 100%;
     width: 70px;
 }
 

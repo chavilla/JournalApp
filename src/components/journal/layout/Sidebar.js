@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import JournalEntries from "../JournalEntries";
 import { startLogout } from "../../../actions/auth";
 import { hideSidebar, showSidebar } from "../../../actions/ui";
+import { startNewNote } from "../../../actions/notes";
 
 const Sidebar = () => {
   const { ui: { x }, auth } = useSelector((state) => state);
@@ -31,9 +32,13 @@ const Sidebar = () => {
 
   window.addEventListener("resize", handleResize);
 
+  const handleAddEntry = () => { 
+    dispatch(startNewNote());
+  }
+
   return (
     <aside
-      className={[`journal__sidebar`]}
+      className='journal__sidebar'
       style={{
         transform: `translateX(${x}%)`,
         transition: "transform .5s",
@@ -52,7 +57,7 @@ const Sidebar = () => {
         </button>
       </div>
 
-      <div className="journal__new-entry">
+      <div className="journal__new-entry" onClick={ handleAddEntry } >
         <i className="far fa-calendar-plus fa-5x"></i>
         <p className="mt-5">New entry</p>
       </div>

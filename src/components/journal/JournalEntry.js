@@ -1,6 +1,6 @@
 import React from 'react'
 
-const JournalEntry = ({entry}) => {
+const JournalEntry = ({note}) => {
     return (
         <div className='journal__entry'>
             <div className='journal__entry-picture'
@@ -12,14 +12,8 @@ const JournalEntry = ({entry}) => {
             </div>
             <div className='journal__entry-body'>
                 <p className='journal__entry-title'>
-                    Un nuevo día
+                    Hola
                 </p>
-                <p className='journal__entry-content'>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                </p>
-            </div>
-            <div className='journal__entry-date-box'>
-                <span>Monday 26</span>
             </div>
         </div>
     )

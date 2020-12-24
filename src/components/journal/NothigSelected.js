@@ -3,6 +3,7 @@ import React from 'react'
 const NothigSelected = () => {
     return (
         <div className='nothing__main-content'>
+            
             <p>
                 Select Something
                 <br />
