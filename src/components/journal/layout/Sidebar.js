@@ -5,7 +5,7 @@ import { startLogout } from "../../../actions/auth";
 import { hideSidebar, showSidebar } from "../../../actions/ui";
 
 const Sidebar = () => {
-  const { x } = useSelector((state) => state.ui);
+  const { ui: { x }, auth } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -42,7 +42,7 @@ const Sidebar = () => {
       <div className="journal__sidebar-navbar">
         <h3>
           <i className="far fa-moon"></i>
-          <span> Jesús</span>
+          <span> {auth.name}</span>
         </h3>
         <div className="" onClick={() => handleToggle()}>
           <i className="fas fa-chevron-right fa-2x"></i>

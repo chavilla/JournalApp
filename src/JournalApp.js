@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Provider } from "react-redux";
 import AppRouter from "./components/routers/AppRouter";
 import { store } from "./store/store";

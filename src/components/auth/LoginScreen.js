@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { startLoginEmailPassword, startLoginGoogle } from "../../actions/auth";
@@ -6,20 +6,15 @@ import { removeError, setError } from "../../actions/ui";
 import useForm from "../../hooks/useForm";
 import { loginValidation } from "../../validation/loginValidation";
 
-const LoginScreen = ({ history }) => {
+const LoginScreen = () => {
   const dispatch = useDispatch();
 
   //get the state
   const {
     ui: { msgError, loading },
-    auth: { uid },
   } = useSelector((state) => state);
 
-  useEffect(() => {
-    if (uid) {
-      history.push("/journal");
-    }
-  }, [uid]);
+  
 
   //custom hook
   const [value, handleChange] = useForm({

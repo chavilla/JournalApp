@@ -1,0 +1,2 @@
+myAliases ='vim .bashrc'
+
