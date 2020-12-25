@@ -18,19 +18,19 @@ const Sidebar = () => {
     }
   };
 
-  const handleResize = () => {
+  /* const handleResize = () => {
     if (window.innerWidth <= 768) {
       dispatch(hideSidebar());
     } else {
       dispatch(showSidebar());
     }
-  };
+  }; */
 
   const handleLogout = () => {
     dispatch(startLogout());
   };
 
-  window.addEventListener("resize", handleResize);
+ // window.addEventListener("resize", handleResize);
 
   const handleAddEntry = () => { 
     dispatch(startNewNote());
@@ -41,7 +41,7 @@ const Sidebar = () => {
       className='journal__sidebar'
       style={{
         transform: `translateX(${x}%)`,
-        transition: "transform .5s",
+        transition: "transform .3s",
       }}
     >
       <div className="journal__sidebar-navbar">

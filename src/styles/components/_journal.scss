@@ -107,14 +107,22 @@ $breakpoint-tablet: 768px;
 }
 
 .journal__entry {
+    align-items: center;
     background-color: white;
     border-radius: 4px;
     color: black;
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: 30% 30% 40%;
+    height: 40px;
     margin-bottom: 10px;
     overflow: hidden !important;
     cursor: pointer;
+}
+
+@media (min-width: 500)  {
+    .journal__entry {
+        grid-template-columns: 30% 40% 30%;
+    }
 }
 
 .journal__entry-picture {
@@ -128,7 +136,7 @@ $breakpoint-tablet: 768px;
 }
 
 .journal__entry-title {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
 }
 

@@ -12,7 +12,7 @@ const JournalEntries = () => {
 
     useEffect(()=>{
         dispatch(startLoadingNotes(uid));
-    },[notes, dispatch, uid]);
+    },[dispatch, uid]);
 
 
     return (
@@ -29,7 +29,7 @@ const JournalEntries = () => {
                 notes.map( note => (
                     <JournalEntry 
                     key={ note.id }
-                    note={ note }
+                    {...note}
                     />
                 ) )
             }
