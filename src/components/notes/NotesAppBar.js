@@ -1,10 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { startSaveNote } from '../../actions/notes';
 import { hideSidebar, showSidebar } from '../../actions/ui';
 
 const NotesAppBar = () => {
 
-  const {x} = useSelector(state => state.ui);   
+  const { ui:{x}, note: { noteActive } } = useSelector(state => state);   
 
   const dispatch=useDispatch();
 
@@ -17,6 +18,10 @@ const NotesAppBar = () => {
       }
   }
 
+  const handleUpdateNote = () => {
+    dispatch(startSaveNote(noteActive));
+  }
+
     return (
         <div className='notes__appbar'>
           <div className='notes__appbar-menuIcon' onClick={ ()=>handleToggle() }>
@@ -25,7 +30,9 @@ const NotesAppBar = () => {
           <span>{ `${ new Date().getDate() }/${new Date().getMonth()+ 1}/${new Date().getFullYear()}` }</span>
           <div>
               <button className='btn'>Picture</button>
-              <button className='btn'>Save</button>
+              <button className='btn'
+              onClick = { handleUpdateNote }
+              >Save</button>
           </div>
         </div>
     )

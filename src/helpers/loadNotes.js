@@ -1,15 +1,15 @@
-//import { db } from "../firebase/firebase-config"
-import { noteStore } from "./data";
+import { db } from "../firebase/firebase-config"
+//import { noteStore } from "./data";
 
 
 export const loadNotes = async (uid) => {
-   const notesSnap = await noteStore; //db.collection(`/${uid}/journal/notes`).get();
+   const notesSnap = await db.collection(`/${uid}/journal/notes`).get();
    const notes = [];
 
    notesSnap.forEach( note => {
        notes.push({
            id: note.id,
-           ...note//.data(),
+           ...note.data(),
        });
    });
    

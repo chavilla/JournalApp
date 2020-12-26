@@ -1,11 +1,11 @@
-//import moment from 'moment';
+import moment from 'moment';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { activeNote } from '../../actions/notes';
 
 const JournalEntry = ({id, date, title, body, url }) => {
 
-    //const noteDate=moment(date);
+    const noteDate=moment(date);
     const dispatch = useDispatch();
 
     const handleActiveNote = () => {
@@ -28,9 +28,7 @@ const JournalEntry = ({id, date, title, body, url }) => {
                 </p>
             </div>
             <div className=''>
-                { /*noteDate.format('dddd')*/ 
-                    date
-                }
+                { noteDate.format('dddd') }
             </div>
 
         </div>

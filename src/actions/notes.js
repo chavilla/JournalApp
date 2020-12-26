@@ -19,22 +19,52 @@ export const startNewNote = () => {
 };
 
 export const activeNote = (id, note) => ({
-    type: types.notesActive,
-    payload : {
-        id,
-        ...note,
-    }
+  type: types.notesActive,
+  payload: {
+    id,
+    ...note,
+  },
 });
 
-export const startLoadingNotes = (uid) =>{
-    return async (dispatch) => {
-        const notes = await loadNotes(uid);
-        dispatch(setNotes(notes));
-    }
-}
-
+export const startLoadingNotes = (uid) => {
+  return async (dispatch) => {
+    const notes = await loadNotes(uid);
+    dispatch(setNotes(notes));
+  };
+};
 
 export const setNotes = (notes) => ({
-    type: types.notesLoad,
-    payload: notes
-})
+  type: types.notesLoad,
+  payload: notes,
+});
+
+export const startSaveNote = (note) => {
+  return async (dispatch, getState) => {
+    const { uid } = getState().auth;
+
+    if (!note.url) {
+      delete note.url;
+    }
+
+    const noteToFireStore = { ...note };
+    delete noteToFireStore.id;
+
+    await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFireStore);
+
+    dispatch(refreshNote(note.id, noteToFireStore));
+
+    alert('The note have been updated');
+
+  };
+};
+
+export const refreshNote = (id, note) => ({
+  type: types.notesUpdate,
+  payload: {
+    id,
+    note: {
+      id,
+      ...note
+    },
+  },
+});
