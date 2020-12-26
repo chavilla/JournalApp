@@ -3,6 +3,7 @@ import { db } from "../firebase/firebase-config"
 
 
 export const loadNotes = async (uid) => {
+    //get all notes
    const notesSnap = await db.collection(`/${uid}/journal/notes`).get();
    const notes = [];
 
