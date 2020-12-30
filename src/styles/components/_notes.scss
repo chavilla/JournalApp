@@ -39,6 +39,7 @@ $breakpoint-tablet: 768px;
     flex-direction: column;
     height: 100%;
     padding: 20px;
+    overflow: scroll !important;
 }
 
 .notes__title-input, .notes__textarea{
@@ -60,11 +61,19 @@ $breakpoint-tablet: 768px;
     border: none;
     color: $darknavi;
     font-size: 20px;
-    flex: 1 1 auto;
     resize: none;
+    height: 100px;
 }
 
 .notes__image img {
+    height: 120px;
+    width: 200px;
+}
+
+@media (min-width:768px){
+.notes__image img {
     box-shadow: 0px 0px 2px 1px #333;
-    height: 150px;
+    height: 400px;
+    width: 650px;
+}
 }

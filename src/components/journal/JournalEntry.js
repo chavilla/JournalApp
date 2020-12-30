@@ -17,7 +17,7 @@ const JournalEntry = ({id, date, title, body, url }) => {
            { url && 
            <div className='journal__entry-picture'
                 style={{
-                    backgroundImage: 'url(https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg)',
+                    backgroundImage: `url(${url ? url : process.env.PUBLIC_URL + '/public/empty.png' })`,
                     backgroundSize: 'cover'
                 }}
             >
@@ -27,8 +27,8 @@ const JournalEntry = ({id, date, title, body, url }) => {
                     { title==='' ? 'No Title' : `${title}`  }
                 </p>
             </div>
-            <div className=''>
-                { noteDate.format('dddd') }
+            <div className='journal_entry-date'>
+                { noteDate.format('LL') }
             </div>
 
         </div>

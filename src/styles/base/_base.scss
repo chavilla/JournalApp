@@ -24,6 +24,12 @@ html {
     overflow-y: hidden;
 }
 
+@media(min-width:768px) {
+    html {
+        overflow-y: scroll;
+    }
+}
+
 main {
     width: 100%;
 }

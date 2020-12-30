@@ -8,7 +8,7 @@
     color: white;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
     width: 95%;
     padding-left: 10px;
     padding-right: 15px;
@@ -112,31 +112,32 @@ $breakpoint-tablet: 768px;
     border-radius: 4px;
     color: black;
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 20% 50% 30%;
+    height: 50px;
     margin-bottom: 10px;
-    overflow: hidden !important;
+    overflow: hidden;
     cursor: pointer;
-}
-
-@media (min-width: 500)  {
-    .journal__entry {
-        grid-template-columns: 30% 40% 30%;
-    }
 }
 
 .journal__entry-picture {
     height: 100%;
-    width: 70px;
+    width: 50px;
 }
 
 .journal__entry-body {
     padding: 10px;
-
 }
 
 .journal__entry-title {
     font-size: 14px;
     font-weight: bold;
+    text-align: center;
+}
+
+.journal_entry-date {
+    text-align: center;
+    font-size: 14px;
+    color: $google-blue;
 }
 
 .journal__entry-content {
