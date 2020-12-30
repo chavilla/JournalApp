@@ -81,3 +81,23 @@
         background: $button-active-blue;
     }
 }
+
+.btn-danger {
+    background-color: red;
+    border-radius: 25px;
+    color: #ffffff;
+    display: block;
+    margin: 10px 0;
+    transition: background-color .3s ease;
+    width: 90%;
+
+    &:hover {
+        background-color: darken($color: red, $amount: 10);
+    }
+
+}
+@media(min-width:768px) {
+    .btn-danger {
+        width: 25%;
+    }
+}

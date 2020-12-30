@@ -8,7 +8,7 @@ const JournalEntries = () => {
 
     const dispatch = useDispatch();
 
-    const { note:{notes}, auth: { uid } } = useSelector(state => state);
+    const { note, auth: { uid } } = useSelector(state => state);
 
     useEffect(()=>{
         dispatch(startLoadingNotes(uid));
@@ -18,15 +18,15 @@ const JournalEntries = () => {
     return (
         <div className='journal__entries'
         style = {{
-            overflow: notes.length > 7 ? 'scroll' : 'hidden'
+            overflow:'hidden'
         }}
         >
             {
-                notes.length === 0 &&
+                note.notes.length===0 &&
                 <p className=''>You do not have any note</p>
             }
             {
-                notes.map( note => (
+                note.notes.map( note => (
                     <JournalEntry 
                     key={ note.id }
                     {...note}

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import JournalEntries from "../JournalEntries";
 import { startLogout } from "../../../actions/auth";
 import { hideSidebar, showSidebar } from "../../../actions/ui";
-import { startNewNote } from "../../../actions/notes";
+import { cleanNotesLogout, startNewNote } from "../../../actions/notes";
 
 const Sidebar = () => {
   const { ui: { x }, auth } = useSelector((state) => state);
@@ -18,19 +18,10 @@ const Sidebar = () => {
     }
   };
 
-  /* const handleResize = () => {
-    if (window.innerWidth <= 768) {
-      dispatch(hideSidebar());
-    } else {
-      dispatch(showSidebar());
-    }
-  }; */
-
   const handleLogout = () => {
     dispatch(startLogout());
+    dispatch(cleanNotesLogout());
   };
-
- // window.addEventListener("resize", handleResize);
 
   const handleAddEntry = () => { 
     dispatch(startNewNote());
