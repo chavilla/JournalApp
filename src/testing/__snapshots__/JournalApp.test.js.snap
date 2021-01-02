@@ -12,15 +12,6 @@ exports[`JournalApp component should to display the component 1`] = `
     }
   }
 >
-  <ContextProvider
-    value={
-      Object {
-        "setShow": [Function],
-        "show": false,
-      }
-    }
-  >
-    <AppRouter />
-  </ContextProvider>
+  <AppRouter />
 </Provider>
 `;
