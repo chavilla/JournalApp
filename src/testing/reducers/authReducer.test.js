@@ -3,6 +3,10 @@ import { types } from "../../types/types"
 
 describe('reducers/authReducer', () => {
 
+    const action = {
+        type: 'nada',
+        payload: {},
+    }
     
     test('should to return an object with uid and name', () => {
         const action={
@@ -29,7 +33,19 @@ describe('reducers/authReducer', () => {
             uid: 'AR632504',
             name: 'Jesus',
         });
+    });
+
+    test('should to return the state', () => {
+        
+        const initialState = {
+            name: '',
+            lastName: '',
+        }
+        const state = authReducer(initialState,action);
+
+        console.log(state);
     })
+    
     
     
 })
