@@ -30,7 +30,6 @@ const JournalEntry = ({id, date, title, body, url }) => {
             <div className='journal_entry-date'>
                 { noteDate.format('LL') }
             </div>
-
         </div>
     )
 }

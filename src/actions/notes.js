@@ -105,7 +105,6 @@ export const startUploading = (file) => {
 }
 
 export const startDeleteNotes = (id) => {
-  
 
   return async (dispatch, getState) => {
 
