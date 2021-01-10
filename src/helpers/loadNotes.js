@@ -1,6 +1,4 @@
 import { db } from "../firebase/firebase-config"
-//import { noteStore } from "./data";
-
 
 export const loadNotes = async (uid) => {
     //get all notes

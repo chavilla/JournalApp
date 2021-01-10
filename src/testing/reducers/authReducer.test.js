@@ -40,5 +40,8 @@ describe("reducers/authReducer", () => {
       lastName: "",
     };
     const state = authReducer(initialState, action);
+
+    console.log(state);
+
   });
 });

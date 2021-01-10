@@ -8,6 +8,8 @@ import { types } from "../types/types";
 
 export const startNewNote = () => {
   return async (dispatch, getState) => {
+
+    // get the state auth to tak uid
     const { uid } = getState().auth;
 
     const newNote = {
@@ -16,6 +18,7 @@ export const startNewNote = () => {
       date: new Date().getTime(),
     };
 
+    // add a collection in firebase
     const docRef = await db.collection(`${uid}/journal/notes`).add(newNote);
     dispatch(activeNote(docRef.id, newNote));
     dispatch(addNewNote(docRef.id, newNote));
@@ -82,8 +85,8 @@ export const refreshNote = (id, note) => ({
 
 export const startUploading = (file) => {
   return async (dispatch, getState) => {
-    const {noteActive} = getState();
- 
+    const { noteActive } = getState();
+
     Swal.fire({
       title: "Uploading",
       text: "Please wait ...",
