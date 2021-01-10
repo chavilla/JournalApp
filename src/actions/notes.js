@@ -4,7 +4,6 @@ import { fileUpload } from "../helpers/fileUpload";
 import { loadNotes } from "../helpers/loadNotes";
 import { types } from "../types/types";
 
-
 //JournalApp
 
 export const startNewNote = () => {
@@ -36,8 +35,8 @@ export const addNewNote = (id, note) => ({
   payload: {
     id,
     ...note,
-  }
-})
+  },
+});
 
 export const startLoadingNotes = (uid) => {
   return async (dispatch) => {
@@ -66,8 +65,7 @@ export const startSaveNote = (note) => {
 
     dispatch(refreshNote(note.id, noteToFireStore));
 
-    alert('The note have been updated');
-
+    //alert("The note have been updated");
   };
 };
 
@@ -77,53 +75,49 @@ export const refreshNote = (id, note) => ({
     id,
     note: {
       id,
-      ...note
+      ...note,
     },
   },
 });
 
 export const startUploading = (file) => {
   return async (dispatch, getState) => {
-
-    const { noteActive } = getState().note;
-
+    const {noteActive} = getState();
+ 
     Swal.fire({
-      title: 'Uploading',
-      text: 'Please wait ...',
+      title: "Uploading",
+      text: "Please wait ...",
       allowOutsideClick: false,
       willOpen: () => {
         Swal.showLoading();
-      }
-    })
+      },
+    });
 
     const fileUrl = await fileUpload(file);
 
     noteActive.url = fileUrl;
     dispatch(startSaveNote(noteActive));
     Swal.close();
-  }
-}
+  };
+};
 
 export const startDeleteNotes = (id) => {
-
   return async (dispatch, getState) => {
-
     try {
       const { uid } = getState().auth;
       await db.doc(`${uid}/journal/notes/${id}`).delete();
-      dispatch(deleteNote(id))
-    
+      dispatch(deleteNote(id));
     } catch (error) {
       console.log(error);
     }
-  }
-} 
+  };
+};
 
-export const deleteNote = (id) =>({
+export const deleteNote = (id) => ({
   type: types.notesDelete,
-  payload: id
-}); 
+  payload: id,
+});
 
 export const cleanNotesLogout = () => ({
-  type: types.notesLogoutCleaning
+  type: types.notesLogoutCleaning,
 });

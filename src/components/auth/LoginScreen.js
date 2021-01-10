@@ -14,8 +14,6 @@ const LoginScreen = () => {
     ui: { msgError, loading },
   } = useSelector((state) => state);
 
-  
-
   //custom hook
   const [value, handleChange] = useForm({
     email: "",
@@ -44,8 +42,9 @@ const LoginScreen = () => {
   return (
     <>
       <h3 className="auth__title">Iniciar Sesión</h3>
-      <form onSubmit={handleLogin}
-        className='animate__animated animate__fadeIn'
+      <form
+        onSubmit={handleLogin}
+        className="animate__animated animate__fadeIn"
       >
         <div className="auth__container-input">
           <input

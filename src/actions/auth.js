@@ -21,15 +21,13 @@ export const startRegisterEmailPassword = (email, password, displayName) => {
 export const startLoginEmailPassword = (email, password) => {
   return async (dispatch) => {
     try {
-      
-        dispatch(uiStartLoading());
+      dispatch(uiStartLoading());
 
-        const {user} = await firebase
-          .auth()
-          .signInWithEmailAndPassword(email, password);
-        dispatch(login(user.uid, user.displayName));
-        dispatch(uiFinishLoading());
-
+      const { user } = await firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password);
+      dispatch(login(user.uid, user.displayName));
+      dispatch(uiFinishLoading());
     } catch (error) {
       error.message = "Error. This user is not exists.";
       dispatch(setError(error));
@@ -55,12 +53,12 @@ export const login = (uid, name) => ({
   },
 });
 
-export const startLogout = () =>{
+export const startLogout = () => {
   return async (dispatch) => {
     await firebase.auth().signOut();
     dispatch(logout());
-  }
-}
+  };
+};
 
 export const logout = () => ({
   type: types.logout,
