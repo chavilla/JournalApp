@@ -8,3 +8,12 @@ export const initState = {
       body: "Body of active note",
     }
 }
+
+export const initState2 = {
+  auth: {},
+  ui: {
+    loading: false,
+    msgError: {
+    } 
+  },
+}

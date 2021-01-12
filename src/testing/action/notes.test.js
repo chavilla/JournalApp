@@ -23,8 +23,6 @@ jest.mock("../../helpers/fileUpload", () => ({
   }),
 }));
 
-
-
 // create the store
 let store = mockStore(initState);
 
