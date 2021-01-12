@@ -6,9 +6,9 @@ import { types } from "../types/types";
 
 //JournalApp
 
+// add a new note
 export const startNewNote = () => {
   return async (dispatch, getState) => {
-
     // get the state auth to tak uid
     const { uid } = getState().auth;
 
@@ -25,6 +25,7 @@ export const startNewNote = () => {
   };
 };
 
+// set a active note
 export const activeNote = (id, note) => ({
   type: types.notesActive,
   payload: {
@@ -33,6 +34,7 @@ export const activeNote = (id, note) => ({
   },
 });
 
+// Add anew note
 export const addNewNote = (id, note) => ({
   type: types.notesAddNew,
   payload: {
@@ -41,6 +43,7 @@ export const addNewNote = (id, note) => ({
   },
 });
 
+// loading all notes
 export const startLoadingNotes = (uid) => {
   return async (dispatch) => {
     const notes = await loadNotes(uid);
@@ -48,11 +51,13 @@ export const startLoadingNotes = (uid) => {
   };
 };
 
+// Set all notes
 export const setNotes = (notes) => ({
   type: types.notesLoad,
   payload: notes,
 });
 
+// init save note
 export const startSaveNote = (note) => {
   return async (dispatch, getState) => {
     const { uid } = getState().auth;
@@ -68,10 +73,11 @@ export const startSaveNote = (note) => {
 
     dispatch(refreshNote(note.id, noteToFireStore));
 
-    //alert("The note have been updated");
+    alert("The note have been updated");
   };
 };
 
+//Refresh all notes
 export const refreshNote = (id, note) => ({
   type: types.notesUpdate,
   payload: {
@@ -83,6 +89,7 @@ export const refreshNote = (id, note) => ({
   },
 });
 
+// Uploading a photo
 export const startUploading = (file) => {
   return async (dispatch, getState) => {
     const { noteActive } = getState();
@@ -104,6 +111,7 @@ export const startUploading = (file) => {
   };
 };
 
+// init delete a note
 export const startDeleteNotes = (id) => {
   return async (dispatch, getState) => {
     try {
@@ -116,11 +124,13 @@ export const startDeleteNotes = (id) => {
   };
 };
 
+// delete any note
 export const deleteNote = (id) => ({
   type: types.notesDelete,
   payload: id,
 });
 
+// Clean all notes when the user leaves
 export const cleanNotesLogout = () => ({
   type: types.notesLogoutCleaning,
 });

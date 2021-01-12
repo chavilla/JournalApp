@@ -2,19 +2,19 @@
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import {
+  activeNote,
   startLoadingNotes,
   startNewNote,
   startSaveNote,
   startUploading,
 } from "../../actions/notes";
 import { db } from "../../firebase/firebase-config";
+import { initState } from "../../fixtures";
 import { types } from "../../types/types";
 
-// settings
+// settings middlewares and mockstore
 const middleware = [thunk];
 const mockStore = configureStore(middleware);
-
-//window.alert = jest.fn();
 
 // simulate the function uploadfile
 jest.mock("../../helpers/fileUpload", () => ({
@@ -23,16 +23,7 @@ jest.mock("../../helpers/fileUpload", () => ({
   }),
 }));
 
-const initState = {
-  auth: {
-    uid: "AR632504",
-  },
-  noteActive: {
-    id: "GK9EPnSdOMf1AiWtQdGS",
-    title: "Active",
-    body: "Body of active note",
-  },
-};
+
 
 // create the store
 let store = mockStore(initState);
@@ -41,6 +32,8 @@ describe("description action notes", () => {
   // Clean the store before each testing
   beforeEach(() => {
     store = mockStore(initState);
+    window.alert.mockClear()
+
   });
 
   test("startNewNote", async () => {
@@ -120,10 +113,19 @@ describe("description action notes", () => {
 
   test("startUploading update the activeNote", async () => {
 
+    const noteActive = {
+      id: 'GK9EPnSdOMf1AiWtQdGS',
+      body: 'Body of active note',
+      totle: 'Active',
+      date: 1610055204690,
+    }
+
+    await store.dispatch(activeNote('GK9EPnSdOMf1AiWtQdGS', noteActive));
     const file = new File([], "picture.jpeg");
     await store.dispatch(startUploading(file));
 
     const docRef = await db.doc(`AR632504/journal/notes/GK9EPnSdOMf1AiWtQdGS`).get();
+
     expect(docRef.data()).toEqual({
       body: 'Body of active note',
       url: 'https://hola.com/cosa.jpg',

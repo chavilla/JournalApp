@@ -12,3 +12,5 @@ jest.mock('sweetalert2', () => ({
     fire: jest.fn(),
     close: jest.fn(),
  }));
+
+ window.alert = jest.fn();

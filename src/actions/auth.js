@@ -44,7 +44,7 @@ export const startLoginGoogle = () => {
   };
 };
 
-//actions
+//actions to login
 export const login = (uid, name) => ({
   type: types.login,
   payload: {
